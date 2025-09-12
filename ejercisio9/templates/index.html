@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}
+Index Page
+{% endblock %}
+
+{% block content %}
+    <h1>Hello World!</h1>
+    <ul>
+        {% for item in mylist %}
+            <li {% if item == 1 %}style="color: red"{% endif %}>
+                {{ item }}
+            </li>
+        {% endfor %}
+    </ul>    
+    <p>{{ mylist }}</p>
+
+<!-- 
+El enlace, 'Go to Home', dirige al usuario a la vista asociada con la función de manejo 
+de rutas llamada 'index'. 
+-->
+
+    <a href="{{ url_for('filters') }}">Filters</a>
+{% endblock %}

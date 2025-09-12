@@ -1,0 +1,44 @@
+<!--
+/**
+This Jinja2 template defines the structure and content for the main page of a Flask web application. 
+It inherits from a `base.html` template and provides specific content for the `content` block.
+
+**Key Features:**
+
+* **HTML Structure:** The template contains an `<h1>` heading with "Hello World".
+* **Login Form:** A form for user login, with input fields for username and password. 
+This form sends a `POST` request to the `index` function of the Flask application.
+* **File Upload Form:** A separate form for uploading files, specifically limited to 
+Excel spreadsheets and plain text files. This form sends a `POST` request to the 
+`file_upload` function of the application.
+* **Jinja2 Templating:** It uses Jinja2 syntax to extend a base template (`base.html`), 
+define a content block, and dynamically generate URLs for the 
+form actions (`url_for('index')` and `url_for('file_upload')`).
+**/
+-->
+{% extends "base.html" %}
+{% block title %}Index Page{% endblock %}
+
+
+{% block content %}
+    <h1>Hello World</h1>
+
+<!-- 
+Nota importante, mientras que en la aplicacion principal `app.py` cuando se referencia 
+un recurso de las plantillas, se hace incluyendo su extension `.html`. PERO EN LAS PLANTILLAS
+CUANDO SE HACE USO DE JINJA2 AL REFERENCIAS UNA O HACIA UNA PLANTILLA SE HACE UNICAMENTE
+USANDO EL NOMBRE DE LA PLANTILLA, SIN LA EXTENSION 
+-->
+
+    <form method="POST" action="{{  url_for('index') }}">
+        <input type="text" name="username" placeholder="Username"><br>
+        <input type="password" name="password" placeholder="Password"><br>
+        <input type="submit" value="Login">
+    </form>
+
+    <h1>File Upload</h1>
+    <form method="POST" action=" {{  url_for('file_upload') }}" enctype="multipart/form-data">
+        <input type="file" name="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel, text/plain" required="required">
+        <input type="submit" value="Upload Files">
+    </form>
+{% endblock %}

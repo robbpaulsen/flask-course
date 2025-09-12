@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Other Page{% endblock %}
+
+
+<!-- Este bloque de código combina una función de Python para un filtro de plantilla personalizado y un bloque de código Jinja2.
+
+La función 'reverse_string' se registra como un filtro de plantilla personalizado con el mismo nombre.
+Su propósito es invertir una cadena de texto.
+La sintaxis 's[::-1]' es una técnica de Python que crea una copia invertida de la cadena 's'.
+
+El bloque 'content' de Jinja2 muestra una serie de filtros aplicados a la variable 'some_text'.
+1. `{{ some_text }}`: Muestra la cadena original.
+2. `{{ some_text|upper }}`: Convierte la cadena a mayúsculas.
+3. `{{ some_text|lower }}`: Convierte la cadena a minúsculas.
+4. `{{ some_text|capitalize }}`: Pone en mayúscula la primera letra de la cadena.
+5. `{{ some_text|title }}`: Pone en mayúscula la primera letra de cada palabra en la cadena.
+6. `{{ some_text|replace('w', 'W') }}`: Reemplaza todas las 'w' minúsculas por 'W' mayúsculas.
+7. `{{ some_text|reverse_string }}`: Aplica el filtro de plantilla personalizado para invertir la cadena, 
+    demostrando cómo se puede utilizar la función `reverse_string` en la plantilla.
+8. '{{ some_text|repeat }}' La función `repeat` es otro filtro que repite una cadena de texto un número de veces, con un valor predeterminado de 2.
+9. `{{ some_text|repeat(5) }}` Aplica el filtro personalizado para repetir la cadena cinco veces, sobrescribiendo el valor predeterminado.
+
+Este bloque de código HTML crea un enlaces utilizando el motor de plantillas Jinja2 en Flask.
+El enlace utiliza la función `url_for` para generar la URL correcta, lo que es una práctica recomendada en Flask
+ya que evita que los enlaces se rompan si las rutas cambian.
+
+Elenlace, 'Filters', dirige al usuario a la vista asociada con la función de manejo de rutas llamada 'filters'.  -->
+
+
+{% block content %}
+    <h1>Filters</h1>
+    <p>{{ some_text }}</p>
+    <p>{{ some_text|upper }}</p>
+    <p>{{ some_text|lower }}</p>
+    <p>{{ some_text|capitalize }}</p>
+    <p>{{ some_text|title }}</p>
+    <p>{{ some_text|replace('w', 'W') }}</p>
+    <p>{{ some_text|reverse_string }}</p>
+    <p>{{ some_text|repeat }}</p>
+    <p>{{ some_text|repeat(5) }}</p>
+    <p>{{ some_text|alternate_case }}</p>
+
+    <a href="{{ url_for('index') }}">Go to Home</a>
+{% endblock %}

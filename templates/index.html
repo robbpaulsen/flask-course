@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}
+Index Page
+{% endblock %}
+
+{% block content %}
+    <h1>Hello World!</h1>
+    <p>{{ myvalue }}</p>
+    <ul>
+        {% for item in mylist %}
+            <li {% if item == 1 %}style="color: red"{% endif %}>
+                {{ item }}
+            </li>
+        {% endfor %}
+    </ul>    
+    <p>{{ mylist }}</p>
+{% endblock %}
