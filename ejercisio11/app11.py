@@ -46,7 +46,7 @@ def file_upload():
       * Una cadena de texto con una tabla HTML (`str`) si es un archivo de Excel.
 """
 import pandas as pd
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, Response
 
 
 app = Flask(__name__, template_folder='templates')
@@ -78,6 +78,21 @@ def file_upload():
         df = pd.read_excel(file)
         return df.to_html()
 
+@app.route('/convert_csv', methods=['POST'])
+def convert_csv():
+    file = request.files['file']
+
+    df = pd.read_excel(file)
+
+    response = Response(
+        df.to_csv(),
+        mimetype='text/csv',
+        headers={
+            'Content-Disposition': 'attachment; filename=result.csv'
+        }
+    )
+
+    return  response
 
 """
 Inicia el servidor de desarrollo de la aplicación web Flask.

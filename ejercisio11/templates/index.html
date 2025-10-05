@@ -41,4 +41,10 @@ USANDO EL NOMBRE DE LA PLANTILLA, SIN LA EXTENSION
         <input type="file" name="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel, text/plain" required="required">
         <input type="submit" value="Upload Files">
     </form>
+
+        <h1>Convert To CSV</h1>
+    <form method="POST" action=" {{  url_for('convert_csv') }}" enctype="multipart/form-data">
+        <input type="file" name="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" required="required">
+        <input type="submit" value="Upload Files">
+    </form>
 {% endblock %}
